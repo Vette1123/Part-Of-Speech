@@ -18,16 +18,26 @@ const getWords = asyncHandler(
     const words = JSON.parse(data.toString()).wordList
     shuffleArray(words)
 
-    // filter the unique words
+    //  filter the unique words from the words list
     const uniqueWords = words.filter(
       (word: WordListObject, index: number) =>
         words.findIndex(
           (singleWord: WordListObject) => singleWord.pos === word.pos
         ) === index
     )
+    // filter the non-unique words from the words list
+    const nonUniqueWords = words.filter(
+      (word: WordListObject, index: number) =>
+        words.findIndex(
+          (singleWord: WordListObject) => singleWord.pos === word.pos
+        ) !== index
+    )
 
     // merge the unique words with shuffled words array to get the final words list
-    const finalWords = [...uniqueWords, ...words].slice(0, WORDS_LIST_LENGTH)
+    const finalWords = [...uniqueWords, ...nonUniqueWords].slice(
+      0,
+      WORDS_LIST_LENGTH
+    )
 
     // send the final words list
     res.status(200).json(finalWords)
