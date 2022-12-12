@@ -31,18 +31,16 @@ const getRank = async (req: Request, res: Response, next: NextFunction) => {
   const scores = JSON.parse(data.toString()).scoresList
 
   //   loop over the scores list and increment the rank if the userScore is greater than the current userScore
-  let lessThanCurrent = 0
+  let lessThanCounter = 0
 
-  scores.forEach((currentScore: any) => {
-    if (userScore > currentScore) {
-      lessThanCurrent++
-    }
+  scores.forEach((score: number) => {
+    if (userScore > score) lessThanCounter++
   })
 
-  //   send the rank
   const rank =
-    (Math.ceil(lessThanCurrent / scores.length) * maxScore * 100) / maxScore
+    Math.ceil((lessThanCounter / scores.length) * maxScore * 100) / maxScore
 
+  //   send the rank
   res.status(200).json({ rank })
 }
 
