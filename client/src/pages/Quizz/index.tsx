@@ -22,14 +22,19 @@ const QuizzPage = () => {
 
   const [timer, setTimer] = useState(30)
 
+  const handleSumit = () => {
+    setSumbitClicked(false)
+    setSelected('')
+    setCurrentWordIndex(currentWordIndex + 1)
+    setCurrentWord(words[currentWordIndex + 1])
+    setIsLoading(false)
+    setTimer(30)
+  }
+
   useEffect(() => {
     const customTimer = setInterval(() => {
       if (timer === 1) {
-        setSumbitClicked(false)
-        setSelected('')
-        setCurrentWordIndex(currentWordIndex + 1)
-        setCurrentWord(words[currentWordIndex + 1])
-        setTimer(30)
+        handleSumit()
       }
       setTimer((prevTimer: number) => prevTimer - 1)
     }, 1000)
@@ -74,19 +79,16 @@ const QuizzPage = () => {
                 if (selected) {
                   setIsLoading(true)
                   setSumbitClicked(true)
-                  if (currentWord.pos === selected?.value) {
+                  if (currentWord?.pos === selected?.value) {
                     setUserScore((prev: number) => prev + 1)
                   }
                   setTimeout(() => {
-                    setSumbitClicked(false)
-                    setSelected('')
-                    setCurrentWordIndex(currentWordIndex + 1)
-                    setCurrentWord(words[currentWordIndex + 1])
-                    setIsLoading(false)
-                    setTimer(30)
+                    handleSumit()
                   }, 800)
                   if (isLastWord) {
-                    getUserRanking(userScore)
+                    getUserRanking(
+                      userScore + (currentWord?.pos === selected?.value ? 1 : 0)
+                    )
                     setTimeout(() => {
                       toast.success('You have completed the quizz!')
                       goTo(2)
