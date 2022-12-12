@@ -37,7 +37,7 @@ const QuizzPage = () => {
             sumbitClicked={sumbitClicked}
           />
           {istLoading && (
-            <div className='absolute top-0 left-0 w-full h-full flex justify-center items-center bg-white bg-opacity-40'>
+            <div className='absolute top-0 left-0 w-full h-full flex justify-center items-center bg-white bg-opacity-20'>
               <Spinner />
             </div>
           )}
@@ -55,7 +55,7 @@ const QuizzPage = () => {
                   setIsLoading(true)
                   setSumbitClicked(true)
                   if (currentWord.pos === selected?.value) {
-                    setUserScore(userScore + 1)
+                    setUserScore((prev: number) => prev + 1)
                   }
                   setTimeout(() => {
                     setSumbitClicked(false)
@@ -63,10 +63,10 @@ const QuizzPage = () => {
                     setCurrentWordIndex(currentWordIndex + 1)
                     setCurrentWord(words[currentWordIndex + 1])
                     setIsLoading(false)
-                  }, 1000)
+                  }, 800)
                   if (isLastWord) {
+                    getUserRanking(userScore)
                     setTimeout(() => {
-                      getUserRanking(userScore)
                       toast.success('You have completed the quizz!')
                       goTo(2)
                     }, 500)
