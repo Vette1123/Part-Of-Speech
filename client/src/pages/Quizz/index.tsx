@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import AppContext from 'context'
 import { CurrentWordProps } from 'types'
@@ -19,6 +19,23 @@ const QuizzPage = () => {
   const [sumbitClicked, setSumbitClicked] = useState(false)
   const [istLoading, setIsLoading] = useState(false)
   const isLastWord = currentWordIndex === words.length - 1
+
+  const [timer, setTimer] = useState(30)
+
+  useEffect(() => {
+    const customTimer = setInterval(() => {
+      if (timer === 1) {
+        setSumbitClicked(false)
+        setSelected('')
+        setCurrentWordIndex(currentWordIndex + 1)
+        setCurrentWord(words[currentWordIndex + 1])
+        setTimer(30)
+      }
+      setTimer((prevTimer: number) => prevTimer - 1)
+    }, 1000)
+    return () => clearInterval(customTimer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentWord, timer])
 
   return (
     <div className='bg-white w-full h-screen flex justify-center items-center'>
@@ -47,6 +64,9 @@ const QuizzPage = () => {
             <ProgressBar
               percentage={Math.floor((currentWordIndex / words.length) * 100)}
             />
+            <span className='font-bold'>
+              {timer > 0 ? `${timer} seconds left` : 'Time is up!'}
+            </span>
           </div>
           <div className='flex justify-end mt-4 px-4'>
             <Button
@@ -63,6 +83,7 @@ const QuizzPage = () => {
                     setCurrentWordIndex(currentWordIndex + 1)
                     setCurrentWord(words[currentWordIndex + 1])
                     setIsLoading(false)
+                    setTimer(30)
                   }, 800)
                   if (isLastWord) {
                     getUserRanking(userScore)

@@ -5,7 +5,7 @@ function ProgressBar({ percentage }: PercentageProps) {
   return (
     <div className='relative pt-1'>
       <div className='flex flex-col mb-3'>
-        <div>
+        <div className='flex justify-between'>
           <span className='text-sm text-black'>Your Progress is</span>
         </div>
         <span className='text-sm font-semibold inline-block text-black'>

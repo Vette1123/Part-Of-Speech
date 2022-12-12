@@ -47,7 +47,6 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
   const getUserRanking = async (userScore: number) => {
     const response = await getRanking(userScore)
     if (response && response?.status === 200) {
-      console.log(response?.data?.rank)
       setUserRank(response?.data?.rank)
     } else {
       toast.error('Something went wrong, please try again later.')
