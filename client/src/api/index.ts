@@ -11,7 +11,7 @@ const axiosClient = axios.create({
     'Content-Type': 'application/json',
   },
 })
-export const getWords = async () => await axiosClient.get('/words')
+export const getWords = async () => await axiosClient.get('/api/words')
 
 export const getRanking = async (userScore: number) =>
-  await axiosClient.post('/rank', { userScore: userScore * 10 })
+  await axiosClient.post('/api/rank', { userScore: userScore * 10 })
