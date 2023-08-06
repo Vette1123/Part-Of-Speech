@@ -43,15 +43,15 @@ const QuizzPage = () => {
   }, [currentWord, timer])
 
   return (
-    <div className='bg-white w-full h-screen flex justify-center items-center'>
-      <div className='max-w-7xl px-4 py-16 sm:px-6 lg:px-8 rounded-3xl shadow-2xl'>
+    <div className='bg-white h-screen flex justify-center items-center'>
+      <div className='lg:w-1/2 px-4 py-16 sm:px-6 lg:px-8 rounded-3xl shadow-2xl'>
         <div className='flex justify-center items-center gap-4'>
           <h2 className='text-5xl font-extrabold text-gray-900 text-center capitalize subpixel-antialiased'>
             {currentWord?.word}
           </h2>
           <p className='mt-2 text-lg text-gray-500 text-center'>is...</p>
         </div>
-        <div className='mt-12 relative'>
+        <div className='mt-12 relative w-full'>
           <Options
             selected={selected}
             setSelected={setSelected}

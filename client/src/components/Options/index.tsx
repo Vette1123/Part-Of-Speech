@@ -28,8 +28,8 @@ interface Props {
 
 function Example({ sumbitClicked, currentWord, selected, setSelected }: Props) {
   return (
-    <div className='w-full px-4 min-w-[600px]'>
-      <div className='mx-auto w-full max-w-6xl'>
+    <div className='w-full px-4'>
+      <div className='mx-auto min-w-[400px]'>
         <RadioGroup value={selected} onChange={setSelected}>
           <div className='space-y-4'>
             {answers.map((answer) => (
