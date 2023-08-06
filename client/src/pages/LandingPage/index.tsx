@@ -27,8 +27,8 @@ const LandingPage = () => {
   const { goTo } = useContext(AppContext)
 
   return (
-    <div className='bg-white w-full h-screen flex justify-center items-center'>
-      <div className='max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8 rounded-3xl shadow-2xl'>
+    <div className='bg-white h-screen flex justify-center items-center'>
+      <div className='md:w-fit md:mx-28 w-[400px] py-16 px-4 sm:py-24 sm:px-6 lg:px-8 rounded-3xl shadow-2xl'>
         <h2 className='text-3xl font-extrabold text-gray-900 text-center'>
           Part Of Speech (POS).
         </h2>
