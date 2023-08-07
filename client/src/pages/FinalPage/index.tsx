@@ -6,8 +6,8 @@ const FinalPage = () => {
   const { goTo, getClientWords, userRank, userScore, resetUserScoreAndRank } =
     useContext(AppContext)
   return (
-    <div className='bg-white w-full h-screen flex justify-center items-center'>
-      <div className='md:w-1/2 w-[450px] py-16 px-4 sm:py-24 sm:px-6 lg:px-8 rounded-3xl shadow-2xl'>
+    <div className='lg:w-1/2'>
+      <div className='py-16 px-4 sm:py-24 sm:px-6 lg:px-8 rounded-3xl shadow-2xl'>
         <h2 className='text-3xl font-extrabold text-gray-900 text-center'>
           You Scored {userScore * 10}
         </h2>
